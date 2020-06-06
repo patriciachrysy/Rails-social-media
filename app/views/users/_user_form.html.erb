@@ -1,0 +1,21 @@
+<%= form_with(model: @user, local: true) do |f|%>
+    <%= f.label :fullname %>
+    <%= f.text_field :fullname %>
+
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+
+    <%= f.label :photo %>
+    <% if @user.photo %>
+        <%= image_tag @user.photo.variant(resize_to_limit: [100, 100]) %>
+    <% end %>
+    <%= f.file_field :photo %>
+
+    <%= f.label :cover_image %>
+    <% if @user.photo %>
+        <%= image_tag @user.cover_image.variant(resize_to_limit: [300, 300]) %>
+    <% end %>
+    <%= f.file_field :cover_image %>
+
+    <%= f.submit 'Done' %>
+<% end %>

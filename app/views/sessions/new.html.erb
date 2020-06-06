@@ -1,0 +1,6 @@
+<h1>Sign in</h1>
+<%= form_with(url: "/sessions", method: "post") do %>
+  <%= label_tag(:username, "Enter your username:") %>
+  <%= text_field_tag(:username) %>
+  <%= submit_tag("Hop in") %>
+<% end %>
