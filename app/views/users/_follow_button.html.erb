@@ -1,0 +1,4 @@
+<%= link_to 'Follow', {controller: :users, action: :follow, id: user.id}, method: :post %>
+<% if current_user.followed?(user) %>
+    <small>(<b><%= user.username %></b> Follows you )</small>
+<% end %>

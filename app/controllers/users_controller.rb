@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   before_action :user_already_signed_in, only: %i[new create]
-  before_action :user_signed_in, except: %i[index new create]
+  before_action :user_signed_in, except: %i[new create]
 
   def index
-    @users = User.all
+    @users = User.all_users_except_me(current_user)
   end
 
   def new
@@ -38,6 +38,30 @@ class UsersController < ApplicationController
       flash[:errors] = current_user.errors.full_messages
       @user = current_user
       render :edit
+    end
+  end
+
+  def follow
+    followed = User.find(params[:id])
+    following = current_user.sent_followings.build(followed_id: params[:id])
+    if following.save
+      flash[:notice] = 'You are now following '+followed.username
+      redirect_to users_path
+    else
+      flash[:errors] = following.errors.full_messages
+      redirect_to users_path
+    end
+  end
+
+  def unfollow
+    followed = User.find(params[:id])
+    following =  Following.find_by(follower_id: current_user.id, followed_id: params[:id])
+    if following.destroy
+      flash[:notice] = 'You are no more following '+followed.username
+      redirect_to users_path
+    else
+      flash[:errors] = ['Could not unfollow']
+      redirect_to users_path
     end
   end
 

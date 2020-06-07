@@ -1,4 +1,6 @@
-<%= @user.fullname %>
-<%= @user.username %>
-<%= image_tag @user.photo.variant(resize_to_limit: [100, 100]) %>
-<%= image_tag @user.cover_image.variant(resize_to_limit: [300, 300]) %>
+<p><strong>Fullname: </strong><%= @user.fullname %></p>
+<p><strong>Username: </strong><%= @user.username %></p>
+<p><strong>Profile picture: </strong><%= image_tag @user.photo.variant(resize_to_limit: [100, 100]) %></p>
+<p><strong>Cover Image: </strong><%= image_tag @user.cover_image.variant(resize_to_limit: [300, 300]) %></p>
+<p><strong>Followers: </strong><%= @user.followers_count %></p>
+<p><strong>Following: </strong><%= @user.followeds_count %></p>

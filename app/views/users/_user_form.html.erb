@@ -6,13 +6,13 @@
     <%= f.text_field :username %>
 
     <%= f.label :photo %>
-    <% if @user.photo %>
+    <% if @user.photo.attached? %>
         <%= image_tag @user.photo.variant(resize_to_limit: [100, 100]) %>
     <% end %>
     <%= f.file_field :photo %>
 
     <%= f.label :cover_image %>
-    <% if @user.photo %>
+    <% if @user.cover_image.attached? %>
         <%= image_tag @user.cover_image.variant(resize_to_limit: [300, 300]) %>
     <% end %>
     <%= f.file_field :cover_image %>

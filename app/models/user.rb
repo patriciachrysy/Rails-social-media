@@ -9,4 +9,25 @@ class User < ApplicationRecord
 
     has_one_attached :photo
     has_one_attached :cover_image
+
+    has_many :sent_followings, class_name: 'Following', foreign_key: 'follower_id'
+    has_many :recieved_followings, class_name: 'Following', foreign_key: 'followed_id'
+    has_many :followers, through: :recieved_followings, source: :follower
+    has_many :followeds, through: :sent_followings, source: :followed
+
+    def followed?(user)
+        followers.include?(user)
+    end
+
+    def follows?(user)
+        followeds.include?(user)
+    end
+
+    def followers_count
+        followers.count
+    end
+
+    def followeds_count
+        followeds.count
+    end
 end
