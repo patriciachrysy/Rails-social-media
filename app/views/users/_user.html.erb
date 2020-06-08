@@ -1,3 +1,7 @@
-<p><%= user.username %></p>
+<p>
+    <%= image_tag user.photo.variant(resize_to_limit: [100, 100]) %>
+    <%= user.username %>
+    <small><b><%= display_username(user) %></b></small>
+</p>
 <%= link_to 'view profile', user_path(user) %>
 <%= following_button(user) %>

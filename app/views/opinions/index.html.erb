@@ -1,0 +1,8 @@
+<% if current_user %>
+    <%= render 'opinion_form' %>
+<% end %>
+<h1>All book reviews</h1>
+
+<% @opinions.each do |opinion| %>
+    <%= render opinion %>
+<% end %>

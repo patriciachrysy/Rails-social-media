@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:current_user] = @user.id
       flash[:notice] = 'Welcome '+current_user.fullname
-      redirect_to users_path
+      redirect_to root_path
     else
       flash[:errors] = @user.errors.full_messages
       render :new

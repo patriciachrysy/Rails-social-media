@@ -15,6 +15,11 @@ class User < ApplicationRecord
     has_many :followers, through: :recieved_followings, source: :follower
     has_many :followeds, through: :sent_followings, source: :followed
 
+    has_many :opinions, foreign_key: 'author_id'
+
+    has_many :comments, foreign_key: 'author_id'
+    has_many :commented_opinions, through: :comments, class_name: 'Comment', source: :opinions
+
     def followed?(user)
         followers.include?(user)
     end
@@ -29,5 +34,19 @@ class User < ApplicationRecord
 
     def followeds_count
         followeds.count
+    end
+
+    def opinions_count
+        opinions.count
+    end
+
+    def owns?(opinion_id)
+        opinions.any? {|op| op.id == opinion_id}
+    end
+
+    def opinion_feed
+        followeds_ids = []
+        followeds.each { |f| followeds_ids << f.id }
+        Opinion.where(author: (followeds_ids + [id]))
     end
 end

@@ -1,0 +1,18 @@
+<%= form_with(model: @opinion, local: true) do |f|%>
+    <%= f.label :book_name %>
+    <%= f.text_field :book_name %>
+
+    <%= f.label :book_author %>
+    <%= f.text_field :book_author %>
+
+    <%= f.label :published_at %>
+    <%= f.date_field :published_at %>
+
+    <%= f.label :book_link %>
+    <%= f.url_field :book_link %>
+
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+
+    <%= f.submit 'Done' %>
+<% end %>

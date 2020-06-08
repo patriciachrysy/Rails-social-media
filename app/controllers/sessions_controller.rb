@@ -12,14 +12,14 @@ class SessionsController < ApplicationController
     else
       session[:current_user] = @user.id
       flash[:notice] = 'Welcome '+current_user.fullname
-      redirect_to users_path
+      redirect_to root_path
     end
   end
 
   def destroy
     session[:current_user] = nil
     flash[:notice] = 'Thanks for visiting.'
-    redirect_to users_path
+    redirect_to root_path
   end
 
   private

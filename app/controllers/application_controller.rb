@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
         return if current_user.nil?
 
         flash[:notice] = 'Already signed in, sign out if you want to reconnect as another user or create a new account'
-        redirect_to users_path
+        redirect_to root_path
         false
     end
 
