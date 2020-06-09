@@ -27,7 +27,7 @@ class OpinionsController < ApplicationController
       redirect_to root_path
     else
       flash[:errors] = opinion.errors.full_messages
-      render :new
+      render :index
     end
   end
 

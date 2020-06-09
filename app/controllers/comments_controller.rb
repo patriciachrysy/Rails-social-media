@@ -15,9 +15,9 @@ class CommentsController < ApplicationController
     comment.opinion = Opinion.find(params[:opinion_id])
     comment.author = current_user
     if comment.save
-      redirect_to root_path, notice: 'Thanks for commenting this review'
+      redirect_to opinion_path(comment.opinion), notice: 'Thanks for commenting this review'
     else
-      redirect_to root_path, errors: comment.errors.full_messages
+      redirect_to opinion_path(comment.opinion), errors: comment.errors.full_messages
     end
   end
 
@@ -27,10 +27,10 @@ class CommentsController < ApplicationController
 
   def update
     comment = Comment.find(params[:id])
-    if comment.update(params[:comment][:content])
-      redirect_to root_path, notice: 'Your comment has been updated'
+    if comment.update(content: params[:comment][:content])
+      redirect_to opinion_path(comment.opinion), notice: 'Your comment has been updated'
     else
-      redirect_to root_path, errors: comment.errors.full_messages
+      redirect_to opinion_path(comment.opinion), errors: comment.errors.full_messages
     end
   end
 

@@ -1,2 +1,7 @@
-<h1>Comments#edit</h1>
-<p>Find me in app/views/comments/edit.html.erb</p>
+<h1>Edit my comment on "<%= @comment.opinion.book_name %>" book review</h1>
+<%= form_with(model: [@comment.opinion, @comment], local: true) do |f|%>
+    <%= f.label :content, hidden: true %>
+    <%= f.text_area :content, placeholder: 'Leave a comment' %>
+
+    <%= f.submit 'Done' %>
+<% end %>
