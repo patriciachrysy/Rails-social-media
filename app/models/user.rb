@@ -20,6 +20,9 @@ class User < ApplicationRecord
     has_many :comments, foreign_key: 'author_id'
     has_many :commented_opinions, through: :comments, class_name: 'Comment', source: :opinions
 
+    has_many :likings
+    has_many :opinions_likings, through: :likings, class_name: 'Liking', source: :opinion
+
     def followed?(user)
         followers.include?(user)
     end
@@ -46,6 +49,18 @@ class User < ApplicationRecord
 
     def owns_comment?(comment_id)
         comments.any? {|comment| comment.id == comment_id}
+    end
+
+    def judged?(opinion_id)
+        opinions_likings.any? {|opinion| opinion.id == opinion_id}
+    end
+
+    def liked?(opinion_id)
+        likings.any? {|liking| liking.opinion_id == opinion_id && liking.status == true }
+    end
+
+    def disliked?(opinion_id)
+        likings.any? {|liking| liking.opinion_id == opinion_id && liking.status == false }
     end
 
     def opinion_feed

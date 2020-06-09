@@ -11,8 +11,9 @@
 <%= read_opinion_button(@opinion) %>
 <%= edit_opinion_button(@opinion) %>
 <%= delete_opinion_button(@opinion) %>
+<%= liking_opinion_button(@opinion) %>
 
 
 <h3> Comments(<%= @opinion.comments_count %>) </h3>
 <%= render 'comments/comment_form' %>
-<%= render @opinion.comments[0..@opinion.comments_count-1] %>
+<%= display_comments(@opinion) %>

@@ -11,5 +11,8 @@
 <%= read_opinion_button(opinion) %>
 <%= edit_opinion_button(opinion) %>
 <%= delete_opinion_button(opinion) %>
+<%= liking_opinion_button(opinion) %>
 
+<p> <%= opinion.likes_count %> Likes </p>
+<p> <%= opinion.dislikes_count %> Dislikes </p>
 <p> <%= opinion.comments_count %> comments </p>

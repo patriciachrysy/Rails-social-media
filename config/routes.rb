@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create]
   resources :opinions do
     resources :comments, except: [:new, :index, :show]
+    resources :likings, only: [:create, :update]
   end
   get '/sign-up', to: 'users#new'
   get '/sign-in', to: 'sessions#new'
