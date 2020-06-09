@@ -5,7 +5,7 @@ class OpinionsController < ApplicationController
   def ownership
     return unless current_user.owns?(params[:id])
 
-    flash[:notice] = 'You do not own this post, you cannot edit it!'
+    flash[:notice] = 'You do not own this post, you cannot edit nor delete it!'
     redirect_to root_path
     false
   end
@@ -33,6 +33,7 @@ class OpinionsController < ApplicationController
 
   def show
     @opinion = Opinion.find(params[:id])
+    @comments = Comment.all
   end
 
   def edit

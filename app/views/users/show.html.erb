@@ -9,6 +9,4 @@
 <%= edit_profile_button(@user)%>
 
 <h3> All <%= @user.fullname %> book reviews </h3>
-<% @user.opinions.each do |opinion| %>
-    <%= render opinion %>
-<% end %>
+<%= render @user.opinions %>

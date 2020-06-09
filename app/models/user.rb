@@ -44,6 +44,10 @@ class User < ApplicationRecord
         opinions.any? {|op| op.id == opinion_id}
     end
 
+    def owns_comment?(comment_id)
+        comments.any? {|comment| comment.id == comment_id}
+    end
+
     def opinion_feed
         followeds_ids = []
         followeds.each { |f| followeds_ids << f.id }

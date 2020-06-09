@@ -1,2 +1,18 @@
-<h1>Opinions#show</h1>
-<p>Find me in app/views/opinions/show.html.erb</p>
+<p>
+    <%= image_tag @opinion.author.photo.variant(resize_to_limit: [100, 100]) %>
+    <%= link_to @opinion.author.fullname, user_path(@opinion.author) %>
+    <small><b><%= display_username(@opinion.author) %></b></small>
+    on the <%= @opinion.created_at %>
+ </p>
+
+<p>Review of <%= @opinion.book_name %></p>
+<p>Book published on the <%= @opinion.published_at %>, by <%= @opinion.book_author %></p>
+<p><%= @opinion.content %></p>
+<%= read_opinion_button(@opinion) %>
+<%= edit_opinion_button(@opinion) %>
+<%= delete_opinion_button(@opinion) %>
+
+
+<h3> Comments(<%= @opinion.comments_count %>) </h3>
+<%= render 'comments/comment_form' %>
+<%= render @opinion.comments[0..@opinion.comments_count-1] %>

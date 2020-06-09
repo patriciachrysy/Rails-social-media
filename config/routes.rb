@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :users, except: [:destroy]
   resources :sessions, only: [:new, :create]
-  resources :opinions
+  resources :opinions do
+    resources :comments, except: [:new, :index, :show]
+  end
   get '/sign-up', to: 'users#new'
   get '/sign-in', to: 'sessions#new'
   get '/sign-out', to: 'sessions#destroy'

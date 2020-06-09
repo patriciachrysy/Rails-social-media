@@ -1,0 +1,6 @@
+<%= form_with(model: [@opinion, @opinion.comments.new], local: true) do |f|%>
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+
+    <%= f.submit 'Done' %>
+<% end %>

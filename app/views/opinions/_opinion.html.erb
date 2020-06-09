@@ -7,6 +7,9 @@
 <p>Review of <%= opinion.book_name %></p>
 <p>Book published on the <%= opinion.published_at %>, by <%= opinion.book_author %></p>
 <p><%= opinion.content %></p>
+<%= link_to 'View', opinion_path(opinion)%>
 <%= read_opinion_button(opinion) %>
 <%= edit_opinion_button(opinion) %>
 <%= delete_opinion_button(opinion) %>
+
+<p> <%= opinion.comments_count %> comments </p>
