@@ -7,27 +7,78 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <!-- Font awesone icons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet">
   </head>
 
-  <body>
+  <body class="bg-ligth-grey">
+    <div class="container-fluid p-0">
+      <div class="row notice">
+        <% if flash[:notice] %>
+          <p class="notice"><%= notice %></p>
+        <% end %>
+        <% if flash[:errors] %>
+          <% flash[:errors].each do |error| %>
+          <p class="error"><%= error %></p> <br>
+          <% end %>
+        <% end %>
+      </div>
 
-    <% if flash[:notice] %>
-      <p class="notice"><%= notice %></p>
-    <% end %>
-    <% if flash[:errors] %>
-      <% flash[:errors].each do |error| %>
-       <p class="error"><%= error %></p> <br>
-      <% end %>
-    <% end %>
+      <div class="row">
+        <div class="col-2 d-flex flex-column bg-dark-blue dark-grey">
+          <ul>
+            <% if current_user %>
+              <li class="font-weight-bolder py-3">
+                <span class="border border-dark"><%= current_user.followeds_count %><br>Following</span>
+                <span class="border border-dark"><%= current_user.followers_count %><br>Followers</span>
+              </li>
+            <% end %>
+            <li class="font-weight-bolder py-3">
+              <i class="fa fa-home px-2"></i>
+              <%= link_to 'HOME', root_path, class: "dark-grey" %>
+            </li>
+            <li class="font-weight-bolder py-3">
+              <i class="fa fa-at px-2"></i>
+              <%= link_to 'CONNECT', root_path, class: "dark-grey" %>
+            </li>
+            <li class="font-weight-bolder py-3">
+              <i class="fa fa-hashtag px-2"></i>
+              <%= link_to 'DISCOVER', root_path, class: "dark-grey" %>
+            </li class="font-weight-bolder py-3">
+            <% if current_user %>
+              <li class="font-weight-bolder py-3">
+              <i class="fa fa-user px-2"></i>
+                <%= link_to 'PROFILE', user_path(current_user), class: "dark-grey" %>
+              </li>
+            <% end %>
+            <li class="font-weight-bolder py-3">
+                <i class="fa fa-calculator px-2"></i>
+                <%= link_to 'STATISTICS', root_path, class: "dark-grey" %>
+            </li>
+          </ul>
 
-    <% if current_user %>
-      <%= link_to 'My profile', user_path(current_user) %>
-      <%= link_to 'Sign Out', sign_out_path, class: "text-white" %>
-    <% else %>
-      <%= link_to 'Sign Up', sign_up_path, class: "text-white" %>
-      <%= link_to 'Sign In', sign_in_path, class: "text-white" %>
-    <% end %>
+        </div>
+        <div class="col-10">
+          <div class="row bg-blue justify-content-end p-3">
+            <% if current_user %>
+              <%= link_to 'Sign Out', sign_out_path, class: "ice-blue" %>
+            <% else %>
+              <%= link_to 'Sign Up', sign_up_path, class: "ice-blue" %>
+              <%= link_to 'Sign In', sign_in_path, class: "ice-blue" %>
+            <% end %>
+          </div>
+          <%= yield %>
+        </div>
+      </div>
 
-    <%= yield %>
+    </div>
   </body>
 </html>
