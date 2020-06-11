@@ -1,14 +1,14 @@
 module OpinionsHelper
     def edit_opinion_button(opinion)
-        link_to 'Edit my opinion', edit_opinion_path(opinion)  if current_user && current_user.owns?(opinion.id)
+        link_to '', edit_opinion_path(opinion), class: "fa fa-pencil blue mx-2"  if current_user && current_user.owns?(opinion.id)
     end
 
     def delete_opinion_button(opinion)
-        link_to 'Delete my opinion', opinion_path(opinion), method: :delete  if current_user && current_user.owns?(opinion.id)
+        link_to '', opinion_path(opinion), method: :delete, class: "fa fa-trash blue mx-2"  if current_user && current_user.owns?(opinion.id)
     end
 
     def read_opinion_button(opinion)
-        link_to 'Read this book', opinion.book_link  if current_user && opinion.book_link
+        link_to '', opinion.book_link, class: "fa fa-book blue mx-2"  if current_user && opinion.book_link
     end
 
     def display_comments(opinion)

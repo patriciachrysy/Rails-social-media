@@ -25,9 +25,11 @@
 
  ul {
      list-style: none;
+     padding: 0;
+     margin: 0;
  }
 
- i {
+ li i {
      font-size: 25px !important;
  }
 
@@ -62,3 +64,54 @@
  .bg-ligth-grey {
      background-color: #f5f6f8;
  }
+
+ .black-border {
+     border: 1px solid #16272f
+ }
+
+ .icy-blue {
+     color: #b4c5cd;
+ }
+
+.medium-text {
+    font-size: 15px;
+}
+
+.big-text {
+    font-size: 25px ;
+}
+
+.profile-pic {
+    border-radius: 5px;
+}
+
+.text-extra-medium {
+    font-size: 17px;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+}
+
+.logo-text {
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 35px;
+    color: white;
+}
+
+.align-self-center {
+    overflow-x: hidden;
+}
+
+.grey-border-bottom {
+    border-bottom: 2px solid #e3e4e6;
+}
+
+.grey-border-right {
+    border-right: 2px solid #e3e4e6;
+}
+
+.grey-border {
+    border: 2px solid #e3e4e6;
+}

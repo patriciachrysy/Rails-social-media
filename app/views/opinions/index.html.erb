@@ -1,8 +1,28 @@
-<% if current_user %>
-    <%= render 'opinion_form' %>
-<% end %>
-<h1>All book reviews</h1>
+<div class="col-9 d-flex flex-column grey-border-right">
+    <div class="row grey-border-bottom p-4">
+        <span class="text-dark text-extra-medium font-weight-bolder">All book reviews</span>
+    </div>
+    <div class="row d-flex flex-column p-4">
+        <% if current_user %>
+            <div class="row bg-white grey-border rounded p-4 m-1">
+                <%= render 'opinion_form' %>
+            </div>
+        <% end %>
 
-<% @opinions.each do |opinion| %>
-    <%= render opinion %>
-<% end %>
+        <div class="col bg-white grey-border rounded px-5 mx-1 my-3">
+            <div class="row grey-border-bottom py-4">
+                <span class="blue text-medium font-weight-bolder"><%= @opinions.count %> book review(s)</span>
+            </div>
+            <div class="row py-4">
+                <% @opinions.each do |opinion| %>
+                    <%= render opinion %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-3 d-flex flex-column px-4">
+    <div class="row grey-border-bottom p-4">
+        <span class="text-dark text-extra-medium font-weight-bolder">Who to follow</span>
+    </div>
+</div>

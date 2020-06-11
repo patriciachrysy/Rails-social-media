@@ -1,18 +1,38 @@
-<p>
-    <%= image_tag opinion.author.photo.variant(resize_to_limit: [100, 100]) %>
-    <%= link_to opinion.author.fullname, user_path(opinion.author) %>
-    <small><b><%= display_username(opinion.author) %></b></small>
-    on the <%= opinion.created_at %>
- </p>
-<p>Review of <%= opinion.book_name %></p>
-<p>Book published on the <%= opinion.published_at %>, by <%= opinion.book_author %></p>
-<p><%= opinion.content %></p>
-<%= link_to 'View', opinion_path(opinion)%>
-<%= read_opinion_button(opinion) %>
-<%= edit_opinion_button(opinion) %>
-<%= delete_opinion_button(opinion) %>
-<%= liking_opinion_button(opinion) %>
+<div class="col-2 p-0">
+    <%= image_tag opinion.author.photo.variant(resize_to_limit: [100, 100]), class: "profile-pic" %>
+</div>
 
-<p> <%= opinion.likes_count %> Likes </p>
-<p> <%= opinion.dislikes_count %> Dislikes </p>
-<p> <%= opinion.comments_count %> comments </p>
+<div class="col">
+    <div class="row">
+        <div class="col p-0">
+            <%= link_to opinion.author.fullname, user_path(opinion.author), class: "text-dark text-medium font-weight-bolder" %>
+        </div>
+        <div class="col d-flex justify-content-end grey p-0">
+            <%= distance_of_time_in_words(DateTime.now, opinion.created_at)%>
+        </div>
+    </div>
+    <div class="row">
+        <span>
+            <span class="blue font-italic"><%= opinion.book_name %></span> 
+            by <span class="blue font-italic"><%= opinion.book_author %></span>, 
+            <span class="blue font-italic"><%= opinion.published_at %></span> 
+        </span><br>
+        <p class="grey"><small><%= opinion.content %></small></p>
+    </div>
+    <div class="row">
+        <div class="col-2 d-flex justify-content-between p-0">
+            <small class="blue"> <%= opinion.likes_count %> <i class="fa fa-thumbs-up"></i> </small>
+            <small class="blue"> <%= opinion.dislikes_count %> <i class="fa fa-thumbs-down"></i> </small>
+            <small class="blue"> <%= opinion.comments_count %> <i class="fa fa-comments"></i> </small>
+        </div>
+        <div class="col d-flex justify-content-end grey p-0">
+            <%= link_to '', opinion_path(opinion), class: "fa fa-eye blue mx-2"%>
+            <%= read_opinion_button(opinion) %>
+            <%= edit_opinion_button(opinion) %>
+            <%= delete_opinion_button(opinion) %>
+            <%= liking_opinion_button(opinion) %>
+        </div>
+    </div>
+</div>
+
+

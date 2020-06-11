@@ -1,2 +1,2 @@
-<small><b>You disliked this review</b></small>
-<%= link_to 'Like this review', opinion_liking_path(opinion, id: liking.id, status: true), method: :put %>
+<i class="fa fa-thumbs-down blue mx-2"></i>
+<%= link_to '', opinion_liking_path(opinion, id: liking.id, status: true), method: :put, class: "fa fa-thumbs-up grey mx-2" %>
