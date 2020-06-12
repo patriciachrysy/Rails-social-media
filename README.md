@@ -14,7 +14,7 @@
     - Like/dislike a book review
     - Comment a book review
 
-> Thechnically speaking, the database schema is quite simple and goes like this: (You can get the file [here](https://github.com/patriciachrysy/rails-capstone-project/tree/feature/docs) )
+> Thechnically speaking, the database schema is quite simple, made up with Lucidchart and goes like this: (You can get the file [here](https://github.com/patriciachrysy/rails-capstone-project/tree/feature/docs) )
 
 ![screenshot](./docs/book_review_erd.png)
 
