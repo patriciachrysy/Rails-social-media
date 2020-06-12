@@ -1,19 +1,105 @@
-<p>
-    <%= image_tag @opinion.author.photo.variant(resize_to_limit: [100, 100]) %>
-    <%= link_to @opinion.author.fullname, user_path(@opinion.author) %>
-    <small><b><%= display_username(@opinion.author) %></b></small>
-    on the <%= @opinion.created_at %>
- </p>
+<div class="col-9 d-flex flex-column grey-border-right">
+    <div class="row grey-border-bottom p-4">
+        <span class="dark-grey text-extra-medium font-weight-bolder">"<%= @opinion.book_name %>" review</span>
+    </div>
+    <div class="row d-flex flex-column p-4">
+        <div class="col bg-white grey-border rounded px-5 mx-1 my-3">
+            <div class="row grey-border-bottom py-4">
+                <span class="blue text-medium font-weight-bolder">Review details</span>
+            </div>
+            <div class="row py-4">
+                <div class="col-2 p-0">
+                    <%= image_tag @opinion.author.photo.variant(resize_to_limit: [100, 100]), class: "profile-pic" %>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col p-0">
+                            <%= link_to @opinion.author.fullname, user_path(@opinion.author), class: "text-dark text-medium font-weight-bolder" %>
+                        </div>
+                        <div class="col d-flex justify-content-end grey p-0">
+                            <%= distance_of_time_in_words(DateTime.now, @opinion.created_at)%>
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col">
+                            <div class="row">
+                                <h3 class="text-dark"><%= @opinion.book_name %></h3>
+                            </div>
+                            <div class="row">
+                                <span>
+                                    By <span class="blue font-italic"><%= @opinion.book_author %></span>, 
+                                    <span class="blue font-italic"><%= @opinion.published_at %></span> 
+                                </span><br>
+                            </div>
+                            <div class="row">
+                                <p><%= @opinion.content %></p>
+                            </div>
 
-<p>Review of <%= @opinion.book_name %></p>
-<p>Book published on the <%= @opinion.published_at %>, by <%= @opinion.book_author %></p>
-<p><%= @opinion.content %></p>
-<%= read_opinion_button(@opinion) %>
-<%= edit_opinion_button(@opinion) %>
-<%= delete_opinion_button(@opinion) %>
-<%= liking_opinion_button(@opinion) %>
+                            <div class="row">
+                                <div class="col-2 d-flex justify-content-between p-0">
+                                    <small class="blue"> <%= @opinion.likes_count %> <i class="fa fa-thumbs-up"></i> </small>
+                                    <small class="blue"> <%= @opinion.dislikes_count %> <i class="fa fa-thumbs-down"></i> </small>
+                                    <small class="blue"> <%= @opinion.comments_count %> <i class="fa fa-comments"></i> </small>
+                                </div>
+                                <div class="col d-flex justify-content-end grey p-0">
+                                    <%= link_to '', opinion_path(@opinion), class: "fa fa-eye blue mx-2"%>
+                                    <%= read_opinion_button(@opinion) %>
+                                    <%= edit_opinion_button(@opinion) %>
+                                    <%= delete_opinion_button(@opinion) %>
+                                    <%= liking_opinion_button(@opinion) %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <% if current_user %>
+            <div class="row bg-white grey-border rounded p-4 m-1">
+                <%= render 'comments/comment_form' %>
+            </div>
+        <% end %>
 
-<h3> Comments(<%= @opinion.comments_count %>) </h3>
-<%= render 'comments/comment_form' %>
-<%= display_comments(@opinion) %>
+        <div class="col bg-white grey-border rounded px-5 mx-1 my-3">
+            <div class="row grey-border-bottom py-4">
+                <span class="blue text-medium font-weight-bolder"><%= @opinion.comments_count%> Comments</span>
+            </div>
+            <div class="row py-4">    
+                <%= display_comments(@opinion) %>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-3 d-flex flex-column ">
+    <% if current_user %>
+        <div class="row grey-border-bottom px-4">
+            <div class="col grey-border-bottom py-4 px-0">
+                <span class="dark-grey text-extra-medium font-weight-bolder">Who to follow</span>
+            </div>
+            <div clas="col d-flex flex-column p-4">
+                <% current_user.follow_suggest.each do |user| %>
+                    <%= render user %>
+                <% end %>
+                <div class="p-2 blue">
+                    <%= link_to 'Popular account', users_path, class: "blue small-text" %> <span> &#183; </span> 
+                    <%= link_to 'Find friends', users_path, class: "blue small-text" %> 
+                </div>
+            </div>
+        </div>
+    <% end %>
+    <div class="row grey-border-bottom px-4">
+        <div class="col grey-border-bottom py-4 px-0">
+            <span class="dark-grey text-extra-medium font-weight-bolder">Popular reviews</span>
+        </div>
+        <div clas="col d-flex flex-column p-4">
+            <% current_user.follow_suggest.each do |user| %>
+                <%= render user %>
+            <% end %>
+            <div class="p-2 blue">
+                <%= link_to 'Make a review too', users_path, class: "blue small-text" %>
+            </div>
+        </div>
+    </div>
+</div>
+

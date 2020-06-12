@@ -1,8 +1,8 @@
 class Opinion < ApplicationRecord
     belongs_to :author, class_name: 'User'
-    has_many :comments
+    has_many :comments, dependent: :destroy
     has_many :commenters, through: :comments, class_name: 'Comment', source: :author
-    has_many :likings
+    has_many :likings, dependent: :destroy
     has_many :likes, -> { where(status: true)}, class_name: 'Liking'
     has_many :dislikes, -> { where(status: false)}, class_name: 'Liking'
     has_many :judges, through: :likings, class_name: 'Liking', source: :user_id

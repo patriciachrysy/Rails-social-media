@@ -1,5 +1,46 @@
-<h1>Users</h1>
-
-<% @users.each do |user| %>
-    <%= render user %>
-<% end %>
+<div class="col-9 d-flex flex-column grey-border-right">
+    <div class="row grey-border-bottom p-4">
+        <span class="dark-grey text-extra-medium font-weight-bolder">Follow some intersting reviewrs</span>
+    </div>
+    <div class="row d-flex flex-column p-4">
+        <div class="col bg-white grey-border rounded px-5 mx-1 my-3">
+            <div class="row grey-border-bottom py-4">
+                <span class="blue text-medium font-weight-bolder"><%= @users.count %> Reviewer(s)</span>
+            </div>
+            <% @users.each do |user| %>
+                <%= render user %>
+            <% end %>
+        </div>
+    </div>
+</div>
+<div class="col-3 d-flex flex-column ">
+    <% if current_user %>
+        <div class="row grey-border-bottom px-4">
+            <div class="col grey-border-bottom py-4 px-0">
+                <span class="dark-grey text-extra-medium font-weight-bolder">Who to follow</span>
+            </div>
+            <div clas="col d-flex flex-column p-4">
+                <% current_user.follow_suggest.each do |user| %>
+                    <%= render user %>
+                <% end %>
+                <div class="p-2 blue">
+                    <%= link_to 'Popular account', users_path, class: "blue small-text" %> <span> &#183; </span> 
+                    <%= link_to 'Find friends', users_path, class: "blue small-text" %> 
+                </div>
+            </div>
+        </div>
+    <% end %>
+    <div class="row grey-border-bottom px-4">
+        <div class="col grey-border-bottom py-4 px-0">
+            <span class="dark-grey text-extra-medium font-weight-bolder">Popular reviews</span>
+        </div>
+        <div clas="col d-flex flex-column p-4">
+            <% current_user.follow_suggest.each do |user| %>
+                <%= render user %>
+            <% end %>
+            <div class="p-2 blue">
+                <%= link_to 'Make a review too', users_path, class: "blue small-text" %>
+            </div>
+        </div>
+    </div>
+</div>

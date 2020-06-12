@@ -38,6 +38,7 @@ class OpinionsController < ApplicationController
 
   def edit
     @opinion = Opinion.find(params[:id])
+    @opinions = Opinion.all
   end
 
   def update

@@ -1,6 +1,7 @@
-<%= form_with(model: [@opinion, @opinion.comments.new], local: true) do |f|%>
-    <%= f.label :content, hidden: true %>
-    <%= f.text_area :content, placeholder: 'Leave a comment' %>
-
-    <%= f.submit 'Done' %>
+<%= form_with(model: [@opinion, @opinion.comments.new], local: true, class: "full-width") do |f|%>
+    <div class="field form-group">
+        <%= f.label :content, hidden: true %>
+        <%= f.text_area :content, placeholder: 'Leave a comment', class: "form-control" %>
+    </div>
+    <%= f.submit 'Done', class: "btn bg-blue text-white" %>
 <% end %>

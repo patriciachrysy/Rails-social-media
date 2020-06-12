@@ -1,21 +1,25 @@
 <%= form_with(model: @user, local: true) do |f|%>
-    <%= f.label :fullname %>
-    <%= f.text_field :fullname %>
+    <div class="row field form-group">
+        <%= f.label :fullname, class: "dark-grey" %>
+        <%= f.text_field :fullname, class: "form-control" %>
+    </div>
 
-    <%= f.label :username %>
-    <%= f.text_field :username %>
+    <div class="row field form-group">
+        <%= f.label :username, class: "dark-grey" %>
+        <%= f.text_field :username, class: "form-control" %>
+    </div>
 
-    <%= f.label :photo %>
-    <% if @user.photo.attached? %>
-        <%= image_tag @user.photo.variant(resize_to_limit: [100, 100]) %>
-    <% end %>
-    <%= f.file_field :photo %>
+    <div class="row field form-group">
+        <%= f.label :photo, class: "dark-grey" %>
+        <%= f.file_field :photo, class: "form-control" %>
+    </div>
 
-    <%= f.label :cover_image %>
-    <% if @user.cover_image.attached? %>
-        <%= image_tag @user.cover_image.variant(resize_to_limit: [300, 300]) %>
-    <% end %>
-    <%= f.file_field :cover_image %>
+    <div class="row field form-group">
+        <%= f.label :cover_image, class: "dark-grey" %>
+        <%= f.file_field :cover_image, class: "form-control" %>
+    </div>
 
-    <%= f.submit 'Done' %>
+    <div class="row field form-group">
+        <%= f.submit 'Done', class: "btn bg-blue text-white" %>
+    </div>
 <% end %>

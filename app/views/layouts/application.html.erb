@@ -39,7 +39,7 @@
           <% if current_user %>
             <div class="row p-3 justify-content-center">
               <div class="col-3">
-                <%= image_tag current_user.photo.variant(resize_to_limit: [60, 60]), class: "profile-pic" %>
+                <%= image_tag current_user.photo.variant(resize_to_limit: [100, 100]), class: "small-profile-pic" %>
               </div>
               <div class="col-9 font-weight-bold text-center d-flex">
                   <p class="dark-grey align-self-center text-extra-medium"><%= current_user.fullname %></p>
@@ -63,11 +63,11 @@
             </li>
             <li class="font-weight-bolder py-3">
               <i class="fa fa-at px-2"></i>
-              <%= link_to 'CONNECT', root_path, class: "dark-grey" %>
+              <%= link_to 'CONNECT', users_path, class: "dark-grey" %>
             </li>
             <li class="font-weight-bolder py-3">
               <i class="fa fa-hashtag px-2"></i>
-              <%= link_to 'DISCOVER', root_path, class: "dark-grey" %>
+              <%= link_to 'DISCOVER', users_path, class: "dark-grey" %>
             </li class="font-weight-bolder py-3">
             <% if current_user %>
               <li class="font-weight-bolder py-3">
@@ -92,7 +92,7 @@
               <% if current_user %>
                 <%= link_to 'SIGN OUT', sign_out_path, class: "ice-blue font-weight-bolder align-self-center" %>
               <% else %>
-                <%= link_to 'SIGN UP', sign_up_path, class: "ice-blue font-weight-bolder align-self-center" %>
+                <%= link_to 'SIGN UP', sign_up_path, class: "ice-blue font-weight-bolder align-self-center mx-2" %>
                 <%= link_to 'SIGN IN', sign_in_path, class: "ice-blue font-weight-bolder align-self-center" %>
               <% end %>
             </div>

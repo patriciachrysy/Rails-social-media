@@ -68,4 +68,8 @@ class User < ApplicationRecord
         followeds.each { |f| followeds_ids << f.id }
         Opinion.where(author: (followeds_ids + [id]))
     end
+
+    def follow_suggest
+        (User.all - followeds - [User.find(id)])[0..2]
+    end
 end
