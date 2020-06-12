@@ -18,6 +18,11 @@
 
 ![screenshot](./docs/book_review_erd.png)
 
+
+> Wana know more? Watch the presentation video.
+
+[![screenshot](./app_video.png)](https://www.loom.com/share/8af38510db29488c93d7366e89c5fa05)
+
 ## Built With
 
 > The project was built using these technologies
@@ -27,7 +32,7 @@
 ## Live Demo
 
 
-> Try out the app here: [book_review]()
+> Try out the app here: [book_review](https://vast-ravine-87359.herokuapp.com/)
 
 
 ## Getting Started
