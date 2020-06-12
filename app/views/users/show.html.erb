@@ -40,10 +40,10 @@
 
         <div class="col bg-white grey-border rounded px-5 mx-1 my-3" id="opinion">
             <div class="row grey-border-bottom py-4">
-                <span class="blue text-medium font-weight-bolder"><%= @user.opinions_likings.count %> favourite review(s)</span>
+                <span class="blue text-medium font-weight-bolder"><%= @user.liked_opinions.count %> favourite review(s)</span>
             </div>
             <div class="row py-4">
-                <% @user.opinions_likings.each do |opinion| %>
+                <% @user.liked_opinions.each do |opinion| %>
                     <%= render opinion %>
                 <% end %>
             </div>

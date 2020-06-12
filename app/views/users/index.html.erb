@@ -30,13 +30,25 @@
             </div>
         </div>
     <% end %>
-    <div class="row grey-border-bottom px-4">
+    <div class="row px-4">
         <div class="col grey-border-bottom py-4 px-0">
             <span class="dark-grey text-extra-medium font-weight-bolder">Popular reviews</span>
         </div>
         <div clas="col d-flex flex-column p-4">
-            <% current_user.follow_suggest.each do |user| %>
-                <%= render user %>
+            <% most_popular_posts.values[0..2].each do |opinion| %>
+                <div class="row py-2">
+                    <div class="col-3 px-4">
+                        <%= image_tag opinion.author.photo.variant(resize_to_limit: [100, 100]), class: "user-pic" %> 
+                    </div>
+                    <div class="col-7">
+                        <%= link_to opinion.author.fullname, user_path(opinion.author), class: "text-dark small-text font-weight-bold" %>
+                        <p><small class="grey"> review of <b class="blue"><%= opinion.book_name %></b>: <%= opinion.content.truncate(25) %></small></p>
+                    </div>
+                    <div class="col-2">
+                        <%= link_to '', opinion_path(opinion), class: "fa fa-eye blue mx-2"%>
+                        <%= most_popular_posts.key(opinion) %> 
+                    </div>
+                </div>
             <% end %>
             <div class="p-2 blue">
                 <%= link_to 'Make a review too', users_path, class: "blue small-text" %>

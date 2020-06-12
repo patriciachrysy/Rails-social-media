@@ -23,16 +23,18 @@
 
   <body class="bg-ligth-grey">
     <div class="container-fluid hide-overflow">
-      <div class="row notice">
-        <% if flash[:notice] %>
-          <p class="notice"><%= notice %></p>
-        <% end %>
-        <% if flash[:errors] %>
+      <% if flash[:notice] %>
+        <div class="row notice bg-success text-white p-2 font-weight-bolder">
+            <p class="notice"><%= notice %></p>
+        </div>
+      <% end %>
+      <% if flash[:errors] %>
+        <div class="row notice bg-danger justify-content-between text-white p-2 font-weight-bolder">
           <% flash[:errors].each do |error| %>
-          <p class="error"><%= error %></p> <br>
+            <p class="error"><%= error %>;</p>
           <% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
 
       <div class="row">
         <div class="col-2 d-flex flex-column bg-dark-blue dark-grey">

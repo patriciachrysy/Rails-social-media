@@ -8,4 +8,13 @@ module ApplicationHelper
         '@'+user.username if current_user
     end
 
+    def most_popular_posts
+        opinions = Opinion.all
+        liked_opinions = opinions.select{|opinion| opinion.likes_count > 0 }
+        my_hash = {}
+        liked_opinions.each do |op|
+            my_hash[op.likes_count] = op
+        end
+        my_hash.sort_by.reverse_each {|key, value| key }.to_h
+    end
 end

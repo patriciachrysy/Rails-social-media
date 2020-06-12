@@ -18,10 +18,10 @@ class User < ApplicationRecord
     has_many :opinions, foreign_key: 'author_id'
 
     has_many :comments, foreign_key: 'author_id'
-    has_many :commented_opinions, through: :comments, class_name: 'Comment', source: :opinions
+    has_many :commented_opinions, through: :comments, source: :opinion
 
     has_many :likings
-    has_many :opinions_likings, through: :likings, class_name: 'Liking', source: :opinion
+    has_many :liked_opinions, through: :likings, source: :opinion
 
     def followed?(user)
         followers.include?(user)
