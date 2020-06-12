@@ -1,0 +1,12 @@
+<div class="row py-2">
+    <div class="col-3 px-4">
+       <%= image_tag user.photo.variant(resize_to_limit: [100, 100]), class: "user-pic" %> 
+    </div>
+    <div class="col-7">
+        <%= link_to user.fullname, user_path(user), class: "text-dark small-text font-weight-bold" %>
+        <p><small class="grey">@<%= user.username %> </small></p>
+    </div>
+    <div class="col-2">
+        <%= following_button(user) %> 
+    </div>
+</div>

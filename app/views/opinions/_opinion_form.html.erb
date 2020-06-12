@@ -1,0 +1,30 @@
+<%= form_with(model: @opinion, local: true) do |f|%>
+    <div class="row">
+        <div class="col-3 field form-group">
+            <%= f.label :book_name, class: "dark-grey" %>*
+            <%= f.text_field :book_name, class: "form-control" %>
+        </div>
+
+        <div class="col-3 field form-group">
+            <%= f.label :book_author, class: "dark-grey" %>*
+            <%= f.text_field :book_author, class: "form-control" %>
+        </div>
+
+        <div class="col-3 field form-group">
+            <%= f.label :published_at, class: "dark-grey" %>*
+            <%= f.date_field :published_at, class: "form-control" %>
+        </div>
+
+        <div class="col-3 field form-group">
+            <%= f.label :book_link, class: "dark-grey" %>
+            <%= f.url_field :book_link, class: "form-control" %>
+        </div>
+    </div>
+
+    <div class="field form-group">
+        <%= f.label :content, hidden: true %>
+        <%= f.text_area :content, placeholder: 'Your review of the book', class: "form-control" %>
+    </div>
+
+    <%= f.submit 'Done', class: "btn bg-blue text-white" %>
+<% end %>

@@ -1,15 +1,112 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RailsTemplate</title>
+    <title>Book Review</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <!-- Font awesone icons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bad+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="bg-ligth-grey">
+    <div class="container-fluid hide-overflow">
+      <% if flash[:notice] %>
+        <div class="row notice bg-success text-white p-2 font-weight-bolder">
+            <p class="notice"><%= notice %></p>
+        </div>
+      <% end %>
+      <% if flash[:errors] %>
+        <div class="row notice bg-danger justify-content-between text-white p-2 font-weight-bolder">
+          <% flash[:errors].each do |error| %>
+            <p class="error"><%= error %>;</p>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-2 d-flex flex-column bg-dark-blue dark-grey">
+          <% if current_user %>
+            <div class="row p-3 justify-content-center">
+              <div class="col-3">
+                <%= image_tag current_user.photo.variant(resize_to_limit: [100, 100]), class: "small-profile-pic" %>
+              </div>
+              <div class="col-9 font-weight-bold text-center d-flex">
+                  <p class="dark-grey align-self-center text-extra-medium"><%= current_user.fullname %></p>
+              </div>
+            </div>
+            <div class="row font-weight-bolder">
+              <div class="col-6 d-flex flex-column black-border text-center py-3">
+                <b class="icy-blue big-text"><%= current_user.followeds_count %></b>
+                <span class="medium-text">Following</span>
+              </div>
+              <div class="col-6 d-flex flex-column black-border text-center py-3">
+                  <b class="icy-blue big-text"><%= current_user.followers_count %></b>
+                  <span class="medium-text">Followers</span>
+              </div>
+            </div>
+          <% end %>
+          <div class="row">
+            <ul>
+              <li class="font-weight-bolder p-3">
+                <i class="fa fa-home px-2"></i>
+                <%= link_to 'HOME', root_path, class: "dark-grey" %>
+              </li>
+              <li class="font-weight-bolder p-3">
+                <i class="fa fa-at px-2"></i>
+                <%= link_to 'CONNECT', users_path, class: "dark-grey" %>
+              </li>
+              <li class="font-weight-bolder p-3">
+                <i class="fa fa-hashtag px-2"></i>
+                <%= link_to 'DISCOVER', users_path, class: "dark-grey" %>
+              </li class="font-weight-bolder p-3">
+              <% if current_user %>
+                <li class="font-weight-bolder p-3">
+                <i class="fa fa-user px-2"></i>
+                  <%= link_to 'PROFILE', user_path(current_user), class: "dark-grey" %>
+                </li>
+              <% end %>
+              <li class="font-weight-bolder p-3">
+                  <i class="fa fa-calculator px-2"></i>
+                  <%= link_to 'STATISTICS', root_path, class: "dark-grey" %>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+        <div class="col-10">
+          <div class="row bg-blue justify-content-space-between p-3">
+            <div class="col d-flex">
+              <%= image_tag 'logo-2.png', class: "logo" %>
+              <span class="logo-text align-self-center ml-2">BOOK REVIEWS</span>
+            </div>
+            <div class="col justify-content-end d-flex">
+              <% if current_user %>
+                <%= link_to 'SIGN OUT', sign_out_path, class: "ice-blue font-weight-bolder align-self-center" %>
+              <% else %>
+                <%= link_to 'SIGN UP', sign_up_path, class: "ice-blue font-weight-bolder align-self-center mx-2" %>
+                <%= link_to 'SIGN IN', sign_in_path, class: "ice-blue font-weight-bolder align-self-center" %>
+              <% end %>
+            </div>
+          </div>
+          <div class="row">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </body>
 </html>

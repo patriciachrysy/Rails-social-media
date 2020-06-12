@@ -1,0 +1,96 @@
+<div class="col-9 d-flex flex-column grey-border-right">
+    <div class="row">
+        <%= image_tag @user.cover_image.variant(resize_to_limit: [700, 400]), class: "cover-image" %>
+    </div>
+    <div class="row grey-border-bottom justify-content-between p-4">
+        <a href="#feed"><span class="dark-grey text-extra-medium font-weight-bolder">Book reviews</span></a>
+        <a href="#following"><span class="dark-grey text-extra-medium font-weight-bolder">Following</span></a>
+        <a href="#follower"><span class="dark-grey text-extra-medium font-weight-bolder">Followers</span></a>
+        <a href="#opinion"><span class="dark-grey text-extra-medium font-weight-bolder">Favourite reviews</span></a>
+    </div>
+    <div class="row d-flex flex-column p-4">
+        <div class="col bg-white grey-border rounded px-5 mx-1 my-3" id="feed">
+            <div class="row grey-border-bottom py-4">
+                <span class="blue text-medium font-weight-bolder"><%= @user.opinions_count %> book review(s)</span>
+            </div>
+            <div class="row py-4">
+                <% @user.opinions.each do |opinion| %>
+                    <%= render opinion %>
+                <% end %>
+            </div>
+        </div>
+
+        <div class="col bg-white grey-border rounded px-5 mx-1 my-3" id="following">
+            <div class="row grey-border-bottom py-4">
+                <span class="blue text-medium font-weight-bolder"><%= @user.followeds_count %> following(s)</span>
+            </div>
+            <% @user.followeds.each do |user| %>
+                <%= render user %>
+            <% end %>
+        </div>
+
+        <div class="col bg-white grey-border rounded px-5 mx-1 my-3" id="follower">
+            <div class="row grey-border-bottom py-4">
+                <span class="blue text-medium font-weight-bolder"><%= @user.followers_count %> follower(s)</span>
+            </div>
+            <% @user.followers.each do |user| %>
+                <%= render user %>
+            <% end %>
+        </div>
+
+        <div class="col bg-white grey-border rounded px-5 mx-1 my-3" id="opinion">
+            <div class="row grey-border-bottom py-4">
+                <span class="blue text-medium font-weight-bolder"><%= @user.liked_opinions.count %> favourite review(s)</span>
+            </div>
+            <div class="row py-4">
+                <% @user.liked_opinions.each do |opinion| %>
+                    <%= render opinion %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-3 d-flex flex-column ">
+    <div class="row grey-border-bottom justify-content-center p-4">
+        <% if current_user.followed?(@user) %>
+            <%= link_to '', {controller: :users, action: :unfollow, id: @user.id}, method: :delete, class: "fa fa-minus-circle grey big-text my-auto mx-3" %>
+        <% else %>
+            <%= link_to '', {controller: :users, action: :follow, id: @user.id}, method: :post, class:"fa fa-plus-circle grey big-text my-auto mx-3" %>
+        <% end %>
+        <%= image_tag @user.photo.variant(resize_to_limit: [100, 100]), class: "profile-pic rounded-circle"%>
+        <% if current_user == @user %>
+            <%= link_to '', edit_user_path(@user), class: "fa fa-cog grey big-text my-auto mx-3" %>
+        <% else %>
+            <i class="fa fa-cog grey big-text my-auto mx-3"></i>
+        <% end %>
+        <div class="col d-flex flex-column py-2">
+            <span class="text-dark text-center grey"><%= @user.fullname %></span>
+            <span class="medium-text text-center grey">@<%= @user.username %></span>
+        </div>
+    </div>
+    <div class="row grey-border-bottom">
+        <div class="col-4 d-flex flex-column grey-border-right text-center py-2">
+            <b class="text-dark big-text"><%= @user.opinions_count %></b>
+            <span class="small-text dark-grey">Reviews</span>
+        </div>
+        <div class="col-4 d-flex flex-column grey-border-right text-center py-2">
+            <b class="text-dark big-text"><%= @user.followeds_count %></b>
+            <span class="small-text dark-grey">Following</span>
+        </div>
+        <div class="col-4 d-flex flex-column text-center py-2">
+            <b class="text-dark big-text"><%= @user.followers_count %></b>
+            <span class="small-text dark-grey">Followers</span>
+        </div>
+    </div>
+
+    <div class="row px-4">
+        <div class="col grey-border-bottom py-4 px-0">
+            <span class="dark-grey text-extra-medium font-weight-bolder">FOLLOWED BY</span>
+        </div>
+        <div clas="col d-flex flex-column p-4">
+            <% @user.followers.each do |user| %>
+                <%= render user %>
+            <% end %>
+        </div>
+    </div>
+</div>
