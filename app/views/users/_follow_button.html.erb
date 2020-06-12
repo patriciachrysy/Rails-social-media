@@ -1,0 +1,4 @@
+<%= link_to '', {controller: :users, action: :follow, id: user.id}, method: :post, class:"fa fa-plus-circle grey px-2" %>
+<% if current_user.followed?(user) %>
+    <i class="fa fa-users blue"></i>
+<% end %>

@@ -1,25 +1,40 @@
 
-# Complete rails project template
+# Book review social media
 
-> This is a template repository to start a fresh ruby on rails project with the linters and the tests tools setup. This project is configured to work with postgre db manager
+> This is a social media web app for book lovers. It is always good to interact with people who share the same hobbies with you. Most important it is better to have some reviews about things before buying or viewing them, especially for book. 'Book Review' aims to connect books lovers and help them share their experiences about the books they have read before.
 
-![screenshot]()
+![screenshot](./app_screenshot.png)
 
+> The actions the any user could do in the app are
+    - preview all book reviews and trending ones
+    - Register
+    - Sign in
+    - Post a book review
+    - Follow some interesting book reviewers
+    - Like/dislike a book review
+    - Comment a book review
+
+> Thechnically speaking, the database schema is quite simple, made up with Lucidchart and goes like this: (You can get the file [here](https://github.com/patriciachrysy/rails-capstone-project/tree/feature/docs) )
+
+![screenshot](./docs/book_review_erd.png)
 
 ## Built With
 
-- Ruby v2.7.0
-- Ruby on Rails v6.0.3
+> The project was built using these technologies
+    - Ruby v2.7.0
+    - Ruby on Rails v6.0.3
 
 ## Live Demo
 
 
-Try out our app here: [stay_in_touch]()
+> Try out the app here: [book_review]()
 
 
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
+
+- Clone the repository and there you go! ;-)
 
 ### Prerequisites
 
@@ -29,7 +44,6 @@ Postgres: >=9.5
 
 ### Setup
 
-- Clone the repository on your local machine
 - cd into the folder
 - install the the bundles with the `bundle` or `bundle install` command. If you are asked to do `bundle update` before, do it.
 - Set up the database using `rake db:migrate` or `rails db:migrate`
@@ -59,11 +73,13 @@ Open `http://localhost:3000/` in your browser.
     rpsec --format documentation
 ```
 
-> Tests will be added by Microverse students. There are no tests for initial features in order to make sure that students write all tests from scratch.
-
 ### Deployment
 
-TBA
+> Follow the [Heroku deployment doc](https://devcenter.heroku.com/articles/getting-started-with-rails5) to deploy th app on heroku
+
+## Special Credit
+
+> Original site design by Gregoire Vella on Behance [Check it!](https://www.behance.net/gallery/14286087/Twitter-Redesign-of-UI-details)
 
 ## Authors
 
@@ -78,7 +94,11 @@ TBA
 
 Contributions, issues and feature requests are welcome!
 
+<<<<<<< HEAD
 Feel free to check the [issues page](issues/).
+=======
+Feel free to check the [issues page](https://github.com/patriciachrysy/rails-capstone-project/issues).
+>>>>>>> feature
 
 ## Show your support
 
