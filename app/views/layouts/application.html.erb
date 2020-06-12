@@ -58,30 +58,32 @@
               </div>
             </div>
           <% end %>
-          <ul class="px-3">
-            <li class="font-weight-bolder py-3">
-              <i class="fa fa-home px-2"></i>
-              <%= link_to 'HOME', root_path, class: "dark-grey" %>
-            </li>
-            <li class="font-weight-bolder py-3">
-              <i class="fa fa-at px-2"></i>
-              <%= link_to 'CONNECT', users_path, class: "dark-grey" %>
-            </li>
-            <li class="font-weight-bolder py-3">
-              <i class="fa fa-hashtag px-2"></i>
-              <%= link_to 'DISCOVER', users_path, class: "dark-grey" %>
-            </li class="font-weight-bolder py-3">
-            <% if current_user %>
-              <li class="font-weight-bolder py-3">
-              <i class="fa fa-user px-2"></i>
-                <%= link_to 'PROFILE', user_path(current_user), class: "dark-grey" %>
+          <div class="row">
+            <ul>
+              <li class="font-weight-bolder p-3">
+                <i class="fa fa-home px-2"></i>
+                <%= link_to 'HOME', root_path, class: "dark-grey" %>
               </li>
-            <% end %>
-            <li class="font-weight-bolder py-3">
-                <i class="fa fa-calculator px-2"></i>
-                <%= link_to 'STATISTICS', root_path, class: "dark-grey" %>
-            </li>
-          </ul>
+              <li class="font-weight-bolder p-3">
+                <i class="fa fa-at px-2"></i>
+                <%= link_to 'CONNECT', users_path, class: "dark-grey" %>
+              </li>
+              <li class="font-weight-bolder p-3">
+                <i class="fa fa-hashtag px-2"></i>
+                <%= link_to 'DISCOVER', users_path, class: "dark-grey" %>
+              </li class="font-weight-bolder p-3">
+              <% if current_user %>
+                <li class="font-weight-bolder p-3">
+                <i class="fa fa-user px-2"></i>
+                  <%= link_to 'PROFILE', user_path(current_user), class: "dark-grey" %>
+                </li>
+              <% end %>
+              <li class="font-weight-bolder p-3">
+                  <i class="fa fa-calculator px-2"></i>
+                  <%= link_to 'STATISTICS', root_path, class: "dark-grey" %>
+              </li>
+            </ul>
+          </div>
 
         </div>
         <div class="col-10">

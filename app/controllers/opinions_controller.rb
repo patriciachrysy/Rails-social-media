@@ -11,8 +11,12 @@ class OpinionsController < ApplicationController
   end
 
   def index
-      @opinions = current_user.nil? ? Opinion.all.ordered_by_most_recent : current_user.opinion_feed.ordered_by_most_recent
-      @opinion = Opinion.new
+    @opinions = if current_user.nil?
+                  Opinion.all.ordered_by_most_recent
+                else
+                  current_user.opinion_feed.ordered_by_most_recent
+                end
+    @opinion = Opinion.new
   end
 
   def new
@@ -23,12 +27,12 @@ class OpinionsController < ApplicationController
     opinion = current_user.opinions.build(opinion_params)
 
     if opinion.save
-      flash[:notice] = "Your book review about "+opinion.book_name+" was published"
-      redirect_to root_path
+      flash[:notice] = 'Your book review about ' + opinion.book_name + ' was published'
     else
       flash[:errors] = opinion.errors.full_messages
-      redirect_to root_path
     end
+
+    redirect_to root_path
   end
 
   def show
@@ -44,7 +48,7 @@ class OpinionsController < ApplicationController
   def update
     opinion = Opinion.find(params[:id])
     if opinion.update(opinion_params)
-      flash[:notice] = "Your book review about "+opinion.book_name+" was updated"
+      flash[:notice] = 'Your book review about ' + opinion.book_name + ' was updated'
       redirect_to opinion
     else
       flash[:errors] = opinion.errors.full_messages
@@ -55,12 +59,11 @@ class OpinionsController < ApplicationController
   def destroy
     opinion = Opinion.find(params[:id])
     if opinion.destroy
-      flash[:notice] = "Your book review about "+opinion.book_name+" was deleted"
-      redirect_to root_path
+      flash[:notice] = 'Your book review about ' + opinion.book_name + ' was deleted'
     else
       flash[:errors] = ['Could not delete this book review']
-      redirect_to root_path
     end
+    redirect_to root_path
   end
 
   private

@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.create(sign_up_params)
     if @user.save
       session[:current_user] = @user.id
-      flash[:notice] = 'Welcome '+current_user.fullname
+      flash[:notice] = 'Welcome ' + current_user.fullname
       redirect_to root_path
     else
       flash[:errors] = @user.errors.full_messages
@@ -45,24 +45,22 @@ class UsersController < ApplicationController
     followed = User.find(params[:id])
     following = current_user.sent_followings.build(followed_id: params[:id])
     if following.save
-      flash[:notice] = 'You are now following '+followed.username
-      redirect_to users_path
+      flash[:notice] = 'You are now following ' + followed.username
     else
       flash[:errors] = following.errors.full_messages
-      redirect_to users_path
     end
+    redirect_to users_path
   end
 
   def unfollow
     followed = User.find(params[:id])
-    following =  Following.find_by(follower_id: current_user.id, followed_id: params[:id])
+    following = Following.find_by(follower_id: current_user.id, followed_id: params[:id])
     if following.destroy
-      flash[:notice] = 'You are no more following '+followed.username
-      redirect_to users_path
+      flash[:notice] = 'You are no more following ' + followed.username
     else
       flash[:errors] = ['Could not unfollow']
-      redirect_to users_path
     end
+    redirect_to users_path
   end
 
   private

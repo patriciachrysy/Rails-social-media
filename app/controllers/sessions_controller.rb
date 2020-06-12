@@ -1,8 +1,7 @@
 class SessionsController < ApplicationController
   before_action :user_already_signed_in, except: %i[destroy]
 
-  def new
-  end
+  def new; end
 
   def create
     @user = User.find_by(sign_in_params)
@@ -11,7 +10,7 @@ class SessionsController < ApplicationController
       redirect_to sign_in_path
     else
       session[:current_user] = @user.id
-      flash[:notice] = 'Welcome '+current_user.fullname
+      flash[:notice] = 'Welcome ' + current_user.fullname
       redirect_to root_path
     end
   end
