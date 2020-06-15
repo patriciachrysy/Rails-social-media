@@ -2,13 +2,6 @@ require 'rails_helper'
 require 'capybara/rails'
 
 RSpec.describe 'Athentication process', type: :system do
-  describe 'access signup page' do
-    it 'shows the right content' do
-      visit sign_up_path
-      expect(page).to have_content('Sign up')
-    end
-  end
-
   describe 'signup a new user' do
     before(:each) do
       visit sign_up_path
@@ -30,7 +23,7 @@ RSpec.describe 'Athentication process', type: :system do
       page.attach_file('user_cover_image', Rails.root + 'app/assets/images/control-remedy.jpg')
       click_on 'Done'
 
-      visit sign_out_path
+      click_on 'SIGN OUT'
 
       visit sign_up_path
 
@@ -52,7 +45,7 @@ RSpec.describe 'Athentication process', type: :system do
       page.attach_file('user_cover_image', Rails.root + 'app/assets/images/control-remedy.jpg')
       click_on 'Done'
 
-      visit sign_out_path
+      visit click_on 'SIGN OUT'
 
       visit sign_in_path
       fill_in 'username', with: 'Capybara'
@@ -68,7 +61,7 @@ RSpec.describe 'Athentication process', type: :system do
       page.attach_file('user_cover_image', Rails.root + 'app/assets/images/control-remedy.jpg')
       click_on 'Done'
 
-      visit sign_out_path
+      click_on 'SIGN OUT'
 
       visit sign_in_path
       fill_in 'username', with: 'capybara'

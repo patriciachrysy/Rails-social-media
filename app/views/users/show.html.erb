@@ -13,11 +13,9 @@
             <div class="row grey-border-bottom py-4">
                 <span class="blue text-medium font-weight-bolder"><%= @user.opinions_count %> book review(s)</span>
             </div>
-            <div class="row py-4">
-                <% @user.opinions.each do |opinion| %>
-                    <%= render opinion %>
-                <% end %>
-            </div>
+            <% @user.opinions.each do |opinion| %>
+                <%= render opinion %>
+            <% end %>
         </div>
 
         <div class="col bg-white grey-border rounded px-5 mx-1 my-3" id="following">

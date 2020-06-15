@@ -1,9 +1,9 @@
-<div class="row mb-4">
+<div class="row py-4 mb-4">
     <div class="col-2 p-0">
         <%= image_tag opinion.author.photo.variant(resize_to_limit: [100, 100]), class: "profile-pic" %>
     </div>
 
-    <div class="col">
+    <div class="col-10">
         <div class="row">
             <div class="col p-0">
                 <%= link_to opinion.author.fullname, user_path(opinion.author), class: "text-dark text-medium font-weight-bolder" %>
@@ -17,8 +17,10 @@
                 <span class="blue font-italic"><%= opinion.book_name %></span> 
                 by <span class="blue font-italic"><%= opinion.book_author %></span>, 
                 <span class="blue font-italic"><%= opinion.published_at %></span> 
-            </span><br>
-            <p class="grey"><small><%= opinion.content.truncate(110) %></small></p>
+            </span>
+        </div>
+        <div class="row">
+            <p class="grey"><small><%= opinion.content.truncate(100) %></small></p>
         </div>
         <div class="row">
             <div class="col-2 d-flex justify-content-between p-0">

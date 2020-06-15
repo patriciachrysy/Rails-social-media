@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   def current_user
-    session[:current_user] ? User.find(session[:current_user]) : nil
+    session[:current_user] ? User.includes(:photo_attachment).find(session[:current_user]) : nil
   end
 
   def user_already_signed_in

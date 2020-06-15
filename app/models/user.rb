@@ -5,7 +5,7 @@ class User < ApplicationRecord
   validates :photo, presence: true
   validates :cover_image, presence: true
 
-  scope :all_users_except_me, ->(user) { where.not(id: user) }
+  scope :all_users_except_me, ->(user) { where.not(id: user).includes(:photo_attachment) }
 
   has_one_attached :photo
   has_one_attached :cover_image
@@ -65,11 +65,11 @@ class User < ApplicationRecord
 
   def opinion_feed
     followeds_ids = []
-    followeds.each { |f| followeds_ids << f.id }
-    Opinion.where(author: (followeds_ids + [id]))
+    followeds.includes(:photo_attachment).each { |f| followeds_ids << f.id }
+    Opinion.where(author: (followeds_ids + [id])).includes(:author)
   end
 
   def follow_suggest
-    (User.all - followeds - [User.find(id)])[0..2]
+    (User.all.includes(:photo_attachment) - followeds - [User.find(id)])[0..2]
   end
 end

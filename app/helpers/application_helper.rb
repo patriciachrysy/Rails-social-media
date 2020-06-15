@@ -1,6 +1,6 @@
 module ApplicationHelper
   def current_user
-    session[:current_user] ? User.find(session[:current_user]) : nil
+    session[:current_user] ? User.includes(:photo_attachment).find(session[:current_user]) : nil
   end
 
   def display_username(user)
@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def most_popular_posts
-    opinions = Opinion.all
+    opinions = Opinion.all.includes(:author)
     liked_opinions = opinions.select { |opinion| opinion.likes_count.positive? }
     my_hash = {}
     liked_opinions.each do |op|
