@@ -1,0 +1,6 @@
+production:
+  cloud_name: patricia237
+  api_key: '541554285859874'
+  api_secret: dVBMAX1T8Dxhg0L6-O-O_3OzaGs
+  enhance_image_tag: true
+  static_file_support: true

@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  book_name: MyString
+  book_author: MyString
+  published_at: 2020-06-07
+  book_link: MyString
+  content: MyText
+
+two:
+  book_name: MyString
+  book_author: MyString
+  published_at: 2020-06-07
+  book_link: MyString
+  content: MyText
