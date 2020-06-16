@@ -32,7 +32,7 @@
 ## Live Demo
 
 
-> Try out the app here: [book_review](https://vast-ravine-87359.herokuapp.com/)
+> Try out the app here: [book_review](https://powerful-wildwood-46604.herokuapp.com/)
 
 
 ## Getting Started
